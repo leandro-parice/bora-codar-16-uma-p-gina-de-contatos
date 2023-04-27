@@ -5,7 +5,7 @@ import ListContact from "./components/ListContact";
 import FormContact from "./components/FormContact";
 
 const App = () => {
-  const [contacts, setContacts] = useState({});
+  const [contacts, setContacts] = useState([]);
   const [filteredContacts, setFilteredContacts] = useState([]);
   const [formContact, setFormContact] = useState(false);
 
@@ -27,25 +27,14 @@ const App = () => {
   };
 
   const handleAddContact = (newContact) => {
-    const letter = newContact.name.toUpperCase().substring(0, 1);
-    console.log(letter);
+    const newContacts = [...contacts, newContact];
+    newContacts.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : b.name.toLowerCase() > a.name.toLowerCase() ? -1 : 0));
 
-    // if (contacts[letter]) {
-    //   console.log("tem sim");
-    // } else {
-    //   const groupContacts = { letter: newContact };
-    // }
+    const newFilteredContacts = [...filteredContacts, newContact];
+    newFilteredContacts.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : b.name.toLowerCase() > a.name.toLowerCase() ? -1 : 0));
 
-    const groupContacts = { letter: newContact };
-
-    // const newContacts = [...contacts, newContact];
-    // newContacts.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : b.name.toLowerCase() > a.name.toLowerCase() ? -1 : 0));
-
-    // const newFilteredContacts = [...filteredContacts, newContact];
-    // newFilteredContacts.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : b.name.toLowerCase() > a.name.toLowerCase() ? -1 : 0));
-
-    setContacts(groupContacts);
-    // setFilteredContacts(newFilteredContacts);
+    setContacts(newContacts);
+    setFilteredContacts(newFilteredContacts);
     setFormContact(false);
   };
 

@@ -27,7 +27,7 @@ const ListContact = ({ contacts }) => {
 
   return (
     <section className="list-contacts">
-      {/* {contacts.length === 0 ? <p>Sem registros</p> : null}
+      {contacts.length === 0 ? <p>Sem registros</p> : null}
       {contacts.map((contact) => (
         <div className="contact-group" key={contact.id}>
           <span className="letter" style={{ backgroundColor: colors[Math.floor(Math.random() * colors.length)] }}>
@@ -43,7 +43,7 @@ const ListContact = ({ contacts }) => {
             </div>
           </div>
         </div>
-      ))} */}
+      ))}
     </section>
   );
 };
