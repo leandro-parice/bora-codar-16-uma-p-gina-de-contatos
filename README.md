@@ -2,6 +2,9 @@
 ## #boraCodar - Uma página de contatos
 ##### Challenge #16
 
+### Online version
+See: [https://leandroparice-boracodar16.netlify.app/](https://leandroparice-boracodar16.netlify.app) 
+
 ### Technologies / Programming languages
 - HTML
 - CSS
@@ -11,10 +14,11 @@
 - Sass
 - JSX
 - GitHub
+- Netlify
 
 ### Improvements
-  - Responsive (Desktop version)
   - Possibility to include contacts ✔️
+  - Responsive (Desktop version)
   - Validation of the contact inclusion form
   - Editing contacts
   - Delete contacts
