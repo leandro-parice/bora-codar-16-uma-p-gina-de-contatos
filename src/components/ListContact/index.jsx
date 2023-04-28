@@ -27,23 +27,28 @@ const ListContact = ({ contacts }) => {
 
   return (
     <section className="list-contacts">
-      {contacts.length === 0 ? <p>Sem registros</p> : null}
-      {contacts.map((contact) => (
-        <div className="contact-group" key={contact.id}>
-          <span className="letter" style={{ backgroundColor: colors[Math.floor(Math.random() * colors.length)] }}>
-            {contact.letter}
-          </span>
-          <div className="contacts">
-            <div className="contact">
+      {/* {contacts.length === 0 ? <p>Sem registros</p> : null} */}
+
+      {Object.keys(contacts).map(key => {
+        return(
+          <div className="contact-group" key={key}>
+            <span className="letter" style={{ backgroundColor: colors[Math.floor(Math.random() * colors.length)] }}>
+              {key}
+            </span>
+            <div className="contacts">
+            {contacts[key].map(contact => {
+              return(<div className="contact" key={contact.id}>
               <img src="https://i.pravatar.cc/50" />
               <div className="contact-content">
                 <strong>{contact.name}</strong>
                 <span>{contact.phone}</span>
               </div>
+            </div>)
+            })}
+
             </div>
           </div>
-        </div>
-      ))}
+        )})}      
     </section>
   );
 };

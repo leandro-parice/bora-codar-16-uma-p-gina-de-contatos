@@ -1,16 +1,15 @@
 import { X } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const FormContact = ({ onAddContact, visible, onAddClick }) => {
-  const [name, setName] = useState("Leandro Parice");
-  const [phone, setPhone] = useState("(14) 99739-2434");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const inputRef = useRef(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const letter = name.toUpperCase().substring(0, 1);
-
-    const newContact = { id: Date.now(), name, phone, letter };
+    const newContact = { id: Date.now(), name, phone };
     onAddContact(newContact);
 
     setName("");
@@ -27,7 +26,7 @@ const FormContact = ({ onAddContact, visible, onAddClick }) => {
           </button>
         </div>
         <form onSubmit={handleSubmit}>
-          <input type="text" value={name} onChange={(event) => setName(event.target.value)} placeholder="Nome" required />
+          <input type="text" value={name} onChange={(event) => setName(event.target.value)} placeholder="Nome" required ref={inputRef} />
           <input type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="Telefone" required />
 
           <button type="submit">Adicionar contato</button>

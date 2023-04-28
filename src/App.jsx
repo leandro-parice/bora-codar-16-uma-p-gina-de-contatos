@@ -5,7 +5,7 @@ import ListContact from "./components/ListContact";
 import FormContact from "./components/FormContact";
 
 const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState({});
   const [filteredContacts, setFilteredContacts] = useState([]);
   const [formContact, setFormContact] = useState(false);
 
@@ -23,18 +23,31 @@ const App = () => {
   }, [contacts]);
 
   const handleVisibleFormContact = (value) => {
+    // inputRef.current.focus();
     setFormContact(value);
   };
 
   const handleAddContact = (newContact) => {
-    const newContacts = [...contacts, newContact];
-    newContacts.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : b.name.toLowerCase() > a.name.toLowerCase() ? -1 : 0));
 
-    const newFilteredContacts = [...filteredContacts, newContact];
-    newFilteredContacts.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : b.name.toLowerCase() > a.name.toLowerCase() ? -1 : 0));
+    const newContacts = contacts;
+    const firstLetter = newContact.name.toUpperCase().charAt(0);
 
-    setContacts(newContacts);
-    setFilteredContacts(newFilteredContacts);
+    if (!newContacts.hasOwnProperty(firstLetter)) {
+      newContacts[firstLetter] = [newContact];
+    } else {
+      newContacts[firstLetter].push(newContact);
+      newContacts[firstLetter].sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : b.name.toLowerCase() > a.name.toLowerCase() ? -1 : 0));
+    }
+
+    const sortKeys = Object.keys(newContacts).sort();
+    const newContactsSort = {};
+
+    for (let key of sortKeys) {
+      newContactsSort[key] = newContacts[key];
+    }
+
+    setContacts(newContactsSort);
+    // setFilteredContacts(newFilteredContacts);
     setFormContact(false);
   };
 
@@ -50,7 +63,7 @@ const App = () => {
   return (
     <div className="app">
       <AppHeader onFilterContacts={handleFilterContacts} onAddClick={handleVisibleFormContact} />
-      <ListContact contacts={filteredContacts} />
+      <ListContact contacts={contacts} />
       <FormContact onAddContact={handleAddContact} visible={formContact} onAddClick={handleVisibleFormContact} />
     </div>
   );

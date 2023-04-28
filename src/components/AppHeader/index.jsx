@@ -1,5 +1,5 @@
 import { Pencil, Plus, Search, Trash } from "lucide-react";
-import { useState } from "react";
+import { useState} from "react";
 
 const AppHeader = ({ onFilterContacts, onAddClick }) => {
   const [query, setQuery] = useState("");
