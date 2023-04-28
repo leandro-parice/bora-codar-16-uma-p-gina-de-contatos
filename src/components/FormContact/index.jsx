@@ -28,7 +28,6 @@ const FormContact = ({ onAddContact, visible, onAddClick }) => {
         <form onSubmit={handleSubmit}>
           <input type="text" value={name} onChange={(event) => setName(event.target.value)} placeholder="Nome" required ref={inputRef} />
           <input type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="Telefone" required />
-
           <button type="submit">Adicionar contato</button>
         </form>
       </div>
