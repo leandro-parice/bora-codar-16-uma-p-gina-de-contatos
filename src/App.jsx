@@ -5,13 +5,7 @@ import ListContact from "./components/ListContact";
 import FormContact from "./components/FormContact";
 
 const App = () => {
-  const [contacts, setContacts] = useState({
-    L: [
-      {id: 1, name: "Leandro", phone: "1"},
-      {id: 2, name: "Lilian", phone: "2"},
-      {id: 3, name: "LUcas", phone: "3"},
-    ]
-  });
+  const [contacts, setContacts] = useState({});
   const [filteredContacts, setFilteredContacts] = useState([]);
   const [formContact, setFormContact] = useState(false);
   const [selectedContact, setSelectedContact] = useState(null);
@@ -30,33 +24,12 @@ const App = () => {
   }, [contacts]);
 
   const handleVisibleFormContact = (value) => {
-    // inputRef.current.focus();
-    setFormContact(value);
+    if(!selectedContact){
+      setFormContact(value);
+    }
   };
 
-  const handleAddContact = (newContact) => {
-
-    const newContacts = contacts;
-    const firstLetter = newContact.name.toUpperCase().charAt(0);
-
-    if (!newContacts.hasOwnProperty(firstLetter)) {
-      newContacts[firstLetter] = [newContact];
-    } else {
-      newContacts[firstLetter].push(newContact);
-      newContacts[firstLetter].sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : b.name.toLowerCase() > a.name.toLowerCase() ? -1 : 0));
-    }
-
-    const sortKeys = Object.keys(newContacts).sort();
-    const newContactsSort = {};
-
-    for (let key of sortKeys) {
-      newContactsSort[key] = newContacts[key];
-    }
-
-    setContacts(newContactsSort);
-    // setFilteredContacts(newFilteredContacts);
-    setFormContact(false);
-  };
+  
 
   const handleFilterContacts = (query) => {
     if (query === "") {
@@ -79,6 +52,22 @@ const App = () => {
     }
   }
 
+  const handleAddClick = () => {
+    if(!selectedContact){
+      setFormContact(true);
+    }
+  }
+
+  const handleEditContact = () => {
+    if(selectedContact){
+      setFormContact(true);
+    }
+  }
+
+  const handleCloseClick = () => {
+    setFormContact(false);
+  }
+
   const handleRemoveContact = () => {    
     if(selectedContact){
       const selectedId = selectedContact.id;
@@ -98,11 +87,39 @@ const App = () => {
     }    
   }
 
+  const handleSendForm = (newContact) => {
+    const newContacts = contacts;
+    const firstLetter = newContact.name.toUpperCase().charAt(0);
+
+    if(selectedContact){
+      const newGroup = contacts[firstLetter].map(contact => { return (contact.id === selectedContact.id ? {id: selectedContact.id, name: newContact.name, phone: newContact.phone} : contact)});
+      newContacts[firstLetter] = newGroup;      
+    }else if (!newContacts.hasOwnProperty(firstLetter)) {
+      newContacts[firstLetter] = [newContact];
+    } else {
+      newContacts[firstLetter].push(newContact);
+      newContacts[firstLetter].sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : b.name.toLowerCase() > a.name.toLowerCase() ? -1 : 0));
+    }
+
+    const sortKeys = Object.keys(newContacts).sort();
+    const newContactsSort = {};
+
+    for (let key of sortKeys) {
+      newContactsSort[key] = newContacts[key];
+    }
+
+    setContacts(newContactsSort);
+    // setFilteredContacts(newFilteredContacts);
+    setFormContact(false);
+  };
+
+
+
   return (
     <div className="app">
-      <AppHeader onRemoveClick={handleRemoveContact} onFilterContacts={handleFilterContacts} onAddClick={handleVisibleFormContact} selectedContact={selectedContact} />
-      <ListContact contacts={contacts} onSelectContact={handleSelectContact} selectedContact={selectedContact} />
-      <FormContact onAddContact={handleAddContact} visible={formContact} onAddClick={handleVisibleFormContact} />
+      <AppHeader selectedContact={selectedContact} onAddClick={handleAddClick} onEditClick={handleEditContact} onRemoveClick={handleRemoveContact} onFilterContacts={handleFilterContacts} />
+      <ListContact contacts={contacts} selectedContact={selectedContact} onSelectContact={handleSelectContact} />
+      <FormContact visible={formContact} selectedContact={selectedContact} onCloseClick={handleCloseClick} onSendForm={handleSendForm} />
     </div>
   );
 };

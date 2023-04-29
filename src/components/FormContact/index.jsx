@@ -1,34 +1,55 @@
 import { X } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
-const FormContact = ({ onAddContact, visible, onAddClick }) => {
+const FormContact = ({ visible, onCloseClick, selectedContact, onSendForm }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [title, setTitle] = useState("Adicionar contato");
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    if(selectedContact){
+      setName(selectedContact.name);
+      setPhone(selectedContact.phone);
+      setTitle("Editar contato");
+    }
+  }, [selectedContact])
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const newContact = { id: Date.now(), name, phone };
-    onAddContact(newContact);
+    if(selectedContact){
+      onSendForm({ id: selectedContact.id, name, phone });
+    }else{
+      onSendForm({ id: Date.now(), name, phone });
+    }
 
-    setName("");
-    setPhone("");
+    handleCloseForm();
   };
 
+  const handleCloseForm = () => {
+    onCloseClick();
+
+    setTimeout(() => {
+      setName("");
+      setPhone("");
+      setTitle("Adicionar contato");
+    }, 300);
+  }
+  
   return (
     <div className={visible ? "form-contact visible" : "form-contact"}>
       <div className="content">
         <div className="content-header">
-          <h2>Adicioanar contato</h2>
-          <button onClick={() => onAddClick(false)}>
+          <h2>{title}</h2>
+          <button onClick={() => handleCloseForm()}>
             <X size={20} />
           </button>
         </div>
         <form onSubmit={handleSubmit}>
           <input type="text" value={name} onChange={(event) => setName(event.target.value)} placeholder="Nome" required ref={inputRef} />
           <input type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="Telefone" required />
-          <button type="submit">Adicionar contato</button>
+          <button type="submit">Salvar</button>
         </form>
       </div>
     </div>
