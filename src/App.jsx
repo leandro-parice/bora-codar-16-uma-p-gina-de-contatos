@@ -10,26 +10,22 @@ const App = () => {
   const [formContact, setFormContact] = useState(false);
   const [selectedContact, setSelectedContact] = useState(null);
 
-  // useEffect(() => {
-  //   const savedContacts = JSON.parse(localStorage.getItem("contacts"));
-  //   if (savedContacts) {
-  //     // console.log("pegou os dados do local storage");
-  //     setContacts(savedContacts);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const savedContacts = JSON.parse(localStorage.getItem("contacts"));
+    if (savedContacts) {
+      setContacts(savedContacts);
+    }
+  }, []);
 
   useEffect(() => {
-    // localStorage.setItem("contacts", JSON.stringify(contacts));
-    console.log(contacts, contacts.length);
+    localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]);
 
   const handleVisibleFormContact = (value) => {
-    if(!selectedContact){
+    if (!selectedContact) {
       setFormContact(value);
     }
   };
-
-  
 
   const handleFilterContacts = (query) => {
     if (query === "") {
@@ -41,60 +37,62 @@ const App = () => {
   };
 
   const handleSelectContact = (contact) => {
-    if(selectedContact){
-      if(contact.id !== selectedContact.id){
+    if (selectedContact) {
+      if (contact.id !== selectedContact.id) {
         setSelectedContact(contact);
-      }else{
+      } else {
         setSelectedContact(null);
       }
-    } else{
+    } else {
       setSelectedContact(contact);
     }
-  }
+  };
 
   const handleAddClick = () => {
-    if(!selectedContact){
+    if (!selectedContact) {
       setFormContact(true);
     }
-  }
+  };
 
   const handleEditContact = () => {
-    if(selectedContact){
+    if (selectedContact) {
       setFormContact(true);
     }
-  }
+  };
 
   const handleCloseClick = () => {
     setFormContact(false);
-  }
+  };
 
-  const handleRemoveContact = () => {    
-    if(selectedContact){
+  const handleRemoveContact = () => {
+    if (selectedContact) {
       const selectedId = selectedContact.id;
       const selectedName = selectedContact.name;
       const firstLetter = selectedName.toUpperCase().charAt(0);
 
       const newGroup = contacts[firstLetter].filter((value) => value.id !== selectedId);
       const newContacts = Object.assign({}, contacts);
-      if(newGroup.length === 0){
+      if (newGroup.length === 0) {
         delete newContacts[firstLetter];
-      }else{
+      } else {
         newContacts[firstLetter] = newGroup;
       }
 
       setSelectedContact(null);
       setContacts(newContacts);
-    }    
-  }
+    }
+  };
 
   const handleSendForm = (newContact) => {
     const newContacts = contacts;
     const firstLetter = newContact.name.toUpperCase().charAt(0);
 
-    if(selectedContact){
-      const newGroup = contacts[firstLetter].map(contact => { return (contact.id === selectedContact.id ? {id: selectedContact.id, name: newContact.name, phone: newContact.phone} : contact)});
-      newContacts[firstLetter] = newGroup;      
-    }else if (!newContacts.hasOwnProperty(firstLetter)) {
+    if (selectedContact) {
+      const newGroup = contacts[firstLetter].map((contact) => {
+        return contact.id === selectedContact.id ? { id: selectedContact.id, name: newContact.name, phone: newContact.phone } : contact;
+      });
+      newContacts[firstLetter] = newGroup;
+    } else if (!newContacts.hasOwnProperty(firstLetter)) {
       newContacts[firstLetter] = [newContact];
     } else {
       newContacts[firstLetter].push(newContact);
@@ -112,8 +110,6 @@ const App = () => {
     // setFilteredContacts(newFilteredContacts);
     setFormContact(false);
   };
-
-
 
   return (
     <div className="app">

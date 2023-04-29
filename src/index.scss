@@ -47,7 +47,7 @@ body {
           transition: opacity ease-in 0.3s;
           will-change: opacity;
 
-          &.active{
+          &.active {
             opacity: 1;
           }
         }
@@ -140,8 +140,8 @@ body {
           will-change: background;
           cursor: pointer;
 
-          &.active{
-            background-color: lighten(#1A1924, 10%);
+          &.active {
+            background-color: lighten(#1a1924, 10%);
           }
 
           img {
@@ -251,7 +251,7 @@ body {
       opacity: 1;
       pointer-events: initial;
 
-      .content{
+      .content {
         transform: translate(0, 0);
       }
     }
