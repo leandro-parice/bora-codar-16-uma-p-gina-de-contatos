@@ -18,11 +18,13 @@ See: [https://leandroparice-boracodar16.netlify.app/](https://leandroparice-bora
 
 ### Improvements
   - Possibility to include contacts ✔️
+  - Delete contacts ✔️
   - Responsive (Desktop version)
   - Validation of the contact inclusion form
   - Editing contacts
-  - Delete contacts
   - Contact image upload
+  - Confirmation message before removing contact
+  - Bug changing letter colors on contact click
 
 ### About #coraCodar
 #boraCodar is a [Rocketseat](https://rocketseat.com.br) project  in which, weekly, a layout is presented so that your front-end code can be made, for more information, see: [rocketseat.com.br/boracodar](https://rocketseat.com.br/boracodar)
