@@ -6,6 +6,8 @@
 
 See: [https://leandroparice-boracodar16.netlify.app/](https://leandroparice-boracodar16.netlify.app)
 
+[![Youtube Example](http://img.youtube.com/vi/aNRegNpck_M/0.jpg)](http://www.youtube.com/watch?v=aNRegNpck_M "Youtube Example")
+
 ### Technologies / Programming languages
 
 - HTML
