@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import ListContactGroup from "../ListContactGroup";
 import ListContactRow from "../ListContactRow";
 

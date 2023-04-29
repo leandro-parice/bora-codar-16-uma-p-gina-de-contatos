@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Pencil, Plus, Search, Trash } from "lucide-react";
 import { useState } from "react";
 

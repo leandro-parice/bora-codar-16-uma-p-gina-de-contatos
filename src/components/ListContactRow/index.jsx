@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const ListContactRow = ({ contact, onSelectRow, selectedContact }) => {
   return (
     <div

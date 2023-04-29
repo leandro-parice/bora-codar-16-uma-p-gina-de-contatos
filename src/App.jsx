@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import { useState, useEffect } from "react";
 
 import AppHeader from "./components/AppHeader";
@@ -6,7 +7,7 @@ import FormContact from "./components/FormContact";
 
 const App = () => {
   const [contacts, setContacts] = useState({});
-  const [filteredContacts, setFilteredContacts] = useState([]);
+  // const [filteredContacts, setFilteredContacts] = useState([]);
   const [formContact, setFormContact] = useState(false);
   const [selectedContact, setSelectedContact] = useState(null);
 
@@ -21,20 +22,14 @@ const App = () => {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]);
 
-  const handleVisibleFormContact = (value) => {
-    if (!selectedContact) {
-      setFormContact(value);
-    }
-  };
-
-  const handleFilterContacts = (query) => {
-    if (query === "") {
-      setFilteredContacts(contacts);
-    } else {
-      const filtered = contacts.filter((contact) => contact.name.toLowerCase().includes(query.toLowerCase()));
-      setFilteredContacts(filtered);
-    }
-  };
+  // const handleFilterContacts = (query) => {
+  //   if (query === "") {
+  //     setFilteredContacts(contacts);
+  //   } else {
+  //     const filtered = contacts.filter((contact) => contact.name.toLowerCase().includes(query.toLowerCase()));
+  //     setFilteredContacts(filtered);
+  //   }
+  // };
 
   const handleSelectContact = (contact) => {
     if (selectedContact) {
@@ -113,7 +108,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <AppHeader selectedContact={selectedContact} onAddClick={handleAddClick} onEditClick={handleEditContact} onRemoveClick={handleRemoveContact} onFilterContacts={handleFilterContacts} />
+      <AppHeader selectedContact={selectedContact} onAddClick={handleAddClick} onEditClick={handleEditContact} onRemoveClick={handleRemoveContact} />
       <ListContact contacts={contacts} selectedContact={selectedContact} onSelectContact={handleSelectContact} />
       <FormContact visible={formContact} selectedContact={selectedContact} onCloseClick={handleCloseClick} onSendForm={handleSendForm} />
     </div>
