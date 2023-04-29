@@ -1,7 +1,7 @@
 import { Pencil, Plus, Search, Trash } from "lucide-react";
 import { useState} from "react";
 
-const AppHeader = ({ onFilterContacts, onAddClick, selectedContact }) => {
+const AppHeader = ({ onFilterContacts, onAddClick, selectedContact, onRemoveClick }) => {
   const [query, setQuery] = useState("");
 
   const handleChange = (event) => {
@@ -15,7 +15,7 @@ const AppHeader = ({ onFilterContacts, onAddClick, selectedContact }) => {
       <div className="header-top">
         <h1>Meus contatos</h1>
         <nav>
-          <button onClick={() => onAddClick(true)} className="active">
+          <button className="active" onClick={() => onAddClick(true)}>
             <Plus size={20} />
           </button>
 
@@ -24,7 +24,7 @@ const AppHeader = ({ onFilterContacts, onAddClick, selectedContact }) => {
           </button>
           
 
-          <button className={selectedContact ? 'active' : ''}>
+          <button className={selectedContact ? 'active' : ''} onClick={() => onRemoveClick()}>
             <Trash size={20} />
           </button>
           

@@ -136,6 +136,7 @@ body {
           padding: 10px;
           border-radius: 50px;
           transition: background ease-in 0.3s;
+          cursor: pointer;
 
           &.active{
             background-color: lighten(#1A1924, 10%);

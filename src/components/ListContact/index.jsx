@@ -4,7 +4,7 @@ import ListContactRow from "../ListContactRow";
 const ListContact = ({ contacts, onSelectContact, selectedContact }) => {
   return (
     <section className="list-contacts">
-      {contacts.length === 0 ? <p>Sem registros</p> : null}
+      {Object.keys(contacts).length === 0 ? <p>Sem registros</p> : null}
       {Object.keys(contacts).map(key => {
         return(
           <div className="contact-group" key={key}>

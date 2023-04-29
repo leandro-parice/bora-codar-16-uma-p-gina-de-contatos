@@ -5,7 +5,13 @@ import ListContact from "./components/ListContact";
 import FormContact from "./components/FormContact";
 
 const App = () => {
-  const [contacts, setContacts] = useState({});
+  const [contacts, setContacts] = useState({
+    L: [
+      {id: 1, name: "Leandro", phone: "1"},
+      {id: 2, name: "Lilian", phone: "2"},
+      {id: 3, name: "LUcas", phone: "3"},
+    ]
+  });
   const [filteredContacts, setFilteredContacts] = useState([]);
   const [formContact, setFormContact] = useState(false);
   const [selectedContact, setSelectedContact] = useState(null);
@@ -18,10 +24,10 @@ const App = () => {
   //   }
   // }, []);
 
-  // useEffect(() => {
-  //   // localStorage.setItem("contacts", JSON.stringify(contacts));
-  //   console.log(contacts);
-  // }, [contacts]);
+  useEffect(() => {
+    // localStorage.setItem("contacts", JSON.stringify(contacts));
+    console.log(contacts, contacts.length);
+  }, [contacts]);
 
   const handleVisibleFormContact = (value) => {
     // inputRef.current.focus();
@@ -73,9 +79,28 @@ const App = () => {
     }
   }
 
+  const handleRemoveContact = () => {    
+    if(selectedContact){
+      const selectedId = selectedContact.id;
+      const selectedName = selectedContact.name;
+      const firstLetter = selectedName.toUpperCase().charAt(0);
+
+      const newGroup = contacts[firstLetter].filter((value) => value.id !== selectedId);
+      const newContacts = Object.assign({}, contacts);
+      if(newGroup.length === 0){
+        delete newContacts[firstLetter];
+      }else{
+        newContacts[firstLetter] = newGroup;
+      }
+
+      setSelectedContact(null);
+      setContacts(newContacts);
+    }    
+  }
+
   return (
     <div className="app">
-      <AppHeader onFilterContacts={handleFilterContacts} onAddClick={handleVisibleFormContact} selectedContact={selectedContact} />
+      <AppHeader onRemoveClick={handleRemoveContact} onFilterContacts={handleFilterContacts} onAddClick={handleVisibleFormContact} selectedContact={selectedContact} />
       <ListContact contacts={contacts} onSelectContact={handleSelectContact} selectedContact={selectedContact} />
       <FormContact onAddContact={handleAddContact} visible={formContact} onAddClick={handleVisibleFormContact} />
     </div>
