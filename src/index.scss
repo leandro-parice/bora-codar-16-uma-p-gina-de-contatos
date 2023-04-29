@@ -43,6 +43,12 @@ body {
           border: none;
           color: inherit;
           cursor: pointer;
+          opacity: 0.5;
+          transition: opacity ease-in 0.3s;
+
+          &.active{
+            opacity: 1;
+          }
         }
       }
     }
@@ -88,7 +94,7 @@ body {
 
   .list-contacts {
     width: 100%;
-    padding: 40px;
+    padding: 40px 20px;
 
     & > p {
       color: white;
@@ -101,7 +107,7 @@ body {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 52px;
+      gap: 20px;
       margin-bottom: 24px;
 
       span.letter {
@@ -114,6 +120,7 @@ body {
         width: 40px;
         height: 40px;
         font-size: 16px;
+        margin: 10px;
       }
 
       .contacts {
@@ -126,6 +133,13 @@ body {
           color: white;
           gap: 16px;
           margin-bottom: 32px;
+          padding: 10px;
+          border-radius: 50px;
+          transition: background ease-in 0.3s;
+
+          &.active{
+            background-color: lighten(#1A1924, 10%);
+          }
 
           img {
             display: block;

@@ -1,7 +1,7 @@
 import ListContactGroup from "../ListContactGroup";
 import ListContactRow from "../ListContactRow";
 
-const ListContact = ({ contacts }) => {
+const ListContact = ({ contacts, onSelectContact, selectedContact }) => {
   return (
     <section className="list-contacts">
       {contacts.length === 0 ? <p>Sem registros</p> : null}
@@ -11,7 +11,7 @@ const ListContact = ({ contacts }) => {
             <ListContactGroup letter={key} />
             <div className="contacts">
               {contacts[key].map(contact => {
-                return(<ListContactRow key={contact.id} contact={contact} />)
+                return(<ListContactRow key={contact.id} contact={contact} onSelectRow={onSelectContact} selectedContact={selectedContact} />)
               })}
             </div>
           </div>

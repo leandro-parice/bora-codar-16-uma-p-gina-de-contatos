@@ -8,6 +8,7 @@ const App = () => {
   const [contacts, setContacts] = useState({});
   const [filteredContacts, setFilteredContacts] = useState([]);
   const [formContact, setFormContact] = useState(false);
+  const [selectedContact, setSelectedContact] = useState(null);
 
   // useEffect(() => {
   //   const savedContacts = JSON.parse(localStorage.getItem("contacts"));
@@ -17,10 +18,10 @@ const App = () => {
   //   }
   // }, []);
 
-  useEffect(() => {
-    // localStorage.setItem("contacts", JSON.stringify(contacts));
-    console.log(contacts);
-  }, [contacts]);
+  // useEffect(() => {
+  //   // localStorage.setItem("contacts", JSON.stringify(contacts));
+  //   console.log(contacts);
+  // }, [contacts]);
 
   const handleVisibleFormContact = (value) => {
     // inputRef.current.focus();
@@ -60,10 +61,22 @@ const App = () => {
     }
   };
 
+  const handleSelectContact = (contact) => {
+    if(selectedContact){
+      if(contact.id !== selectedContact.id){
+        setSelectedContact(contact);
+      }else{
+        setSelectedContact(null);
+      }
+    } else{
+      setSelectedContact(contact);
+    }
+  }
+
   return (
     <div className="app">
-      <AppHeader onFilterContacts={handleFilterContacts} onAddClick={handleVisibleFormContact} />
-      <ListContact contacts={contacts} />
+      <AppHeader onFilterContacts={handleFilterContacts} onAddClick={handleVisibleFormContact} selectedContact={selectedContact} />
+      <ListContact contacts={contacts} onSelectContact={handleSelectContact} selectedContact={selectedContact} />
       <FormContact onAddContact={handleAddContact} visible={formContact} onAddClick={handleVisibleFormContact} />
     </div>
   );
