@@ -8,7 +8,7 @@ import MessageRemove from "./components/MessageRemove";
 
 const App = () => {
   const [contacts, setContacts] = useState({});
-  // const [filteredContacts, setFilteredContacts] = useState([]);
+  const [filteredContacts, setFilteredContacts] = useState({});
   const [selectedContact, setSelectedContact] = useState(null);
   const [formContact, setFormContact] = useState(false);
   const [messageRemove, setMessageRemove] = useState(false);
@@ -18,21 +18,35 @@ const App = () => {
     if (savedContacts) {
       setContacts(savedContacts);
     }
-    console.log(contacts);
   }, []);
+
+  useEffect(() => {
+    console.log(filteredContacts);
+  }, [filteredContacts]);
 
   useEffect(() => {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]);
 
-  // const handleFilterContacts = (query) => {
-  //   if (query === "") {
-  //     setFilteredContacts(contacts);
-  //   } else {
-  //     const filtered = contacts.filter((contact) => contact.name.toLowerCase().includes(query.toLowerCase()));
-  //     setFilteredContacts(filtered);
-  //   }
-  // };
+  const handleFilterContacts = (query) => {
+    if (query === "") {
+      setFilteredContacts(contacts);
+    } else {
+      let filtred = {};
+
+      for (let key in contacts) {
+        if (contacts.hasOwnProperty(key)) {
+          const group = contacts[key].filter((contact) => contact.name.toLowerCase().includes(query.toLowerCase()));
+
+          if (group.length > 0) {
+            filtred[key] = group;
+          }
+        }
+      }
+
+      setFilteredContacts(filtred);
+    }
+  };
 
   const handleSelectContact = (contact) => {
     if (selectedContact) {
@@ -85,6 +99,7 @@ const App = () => {
       setMessageRemove(false);
       setSelectedContact(null);
       setContacts(newContacts);
+      setFilteredContacts(newContacts);
     }
   };
 
@@ -116,14 +131,13 @@ const App = () => {
     }
 
     setContacts(newContactsSort);
-    // setFilteredContacts(newFilteredContacts);
     setFormContact(false);
   };
 
   return (
     <div className="app">
-      <AppHeader selectedContact={selectedContact} onAddClick={handleAddClick} onEditClick={handleEditContact} onRemoveClick={handleRemoveContact} />
-      <ListContact contacts={contacts} selectedContact={selectedContact} onSelectContact={handleSelectContact} />
+      <AppHeader selectedContact={selectedContact} onAddClick={handleAddClick} onEditClick={handleEditContact} onRemoveClick={handleRemoveContact} onFilterContacts={handleFilterContacts} />
+      <ListContact contacts={filteredContacts} selectedContact={selectedContact} onSelectContact={handleSelectContact} />
       <FormContact visible={formContact} selectedContact={selectedContact} onCloseClick={handleCloseClick} onSendForm={handleSendForm} />
       <MessageRemove visible={messageRemove} onCancelClick={handleCancelRemove} onConfirmClick={handleConfirmRemove} />
     </div>
