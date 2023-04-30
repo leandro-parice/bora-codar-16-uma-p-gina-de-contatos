@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import AppHeader from "./components/AppHeader";
 import ListContact from "./components/ListContact";
 import FormContact from "./components/FormContact";
+import MessageRemove from "./components/MessageRemove";
 
 const App = () => {
   const [contacts, setContacts] = useState({});
   // const [filteredContacts, setFilteredContacts] = useState([]);
-  const [formContact, setFormContact] = useState(false);
   const [selectedContact, setSelectedContact] = useState(null);
+  const [formContact, setFormContact] = useState(false);
+  const [messageRemove, setMessageRemove] = useState(false);
 
   useEffect(() => {
     const savedContacts = JSON.parse(localStorage.getItem("contacts"));
@@ -62,6 +64,12 @@ const App = () => {
 
   const handleRemoveContact = () => {
     if (selectedContact) {
+      setMessageRemove(true);
+    }
+  };
+
+  const handleConfirmRemove = () => {
+    if (selectedContact) {
       const selectedId = selectedContact.id;
       const selectedName = selectedContact.name;
       const firstLetter = selectedName.toUpperCase().charAt(0);
@@ -74,9 +82,14 @@ const App = () => {
         newContacts[firstLetter] = newGroup;
       }
 
+      setMessageRemove(false);
       setSelectedContact(null);
       setContacts(newContacts);
     }
+  };
+
+  const handleCancelRemove = () => {
+    setMessageRemove(false);
   };
 
   const handleSendForm = (newContact) => {
@@ -112,6 +125,7 @@ const App = () => {
       <AppHeader selectedContact={selectedContact} onAddClick={handleAddClick} onEditClick={handleEditContact} onRemoveClick={handleRemoveContact} />
       <ListContact contacts={contacts} selectedContact={selectedContact} onSelectContact={handleSelectContact} />
       <FormContact visible={formContact} selectedContact={selectedContact} onCloseClick={handleCloseClick} onSendForm={handleSendForm} />
+      <MessageRemove visible={messageRemove} onCancelClick={handleCancelRemove} onConfirmClick={handleConfirmRemove} />
     </div>
   );
 };
