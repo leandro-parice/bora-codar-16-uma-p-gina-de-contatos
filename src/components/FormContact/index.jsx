@@ -48,6 +48,20 @@ const FormContact = ({ visible, onCloseClick, selectedContact, onSendForm }) => 
     }, 300);
   };
 
+  const handlePhone = (event) => {
+    let value = event.target.value;
+
+    if (!value) {
+      value = "";
+    }
+
+    value = value.replace(/\D/g, "");
+    value = value.replace(/(\d{2})(\d)/, "($1) $2");
+    value = value.replace(/(\d)(\d{4})$/, "$1-$2");
+
+    setPhone(value);
+  };
+
   return (
     <div className={visible ? "form-contact visible" : "form-contact"}>
       <div className="content">
@@ -59,7 +73,7 @@ const FormContact = ({ visible, onCloseClick, selectedContact, onSendForm }) => 
         </div>
         <form onSubmit={handleSubmit}>
           <input type="text" value={name} onChange={(event) => setName(event.target.value)} placeholder="Nome" required ref={nameRef} />
-          <input type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="Telefone" required />
+          <input type="tel" value={phone} onChange={handlePhone} placeholder="Telefone" required maxLength={15} />
           <button type="submit">Salvar</button>
         </form>
       </div>
