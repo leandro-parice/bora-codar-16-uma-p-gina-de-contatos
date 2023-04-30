@@ -128,6 +128,7 @@ const App = () => {
     }
 
     setContacts(newContactsSort);
+    setFilteredContacts(newContactsSort);
     setFormContact(false);
   };
 
