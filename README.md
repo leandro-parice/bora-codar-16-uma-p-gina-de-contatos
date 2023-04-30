@@ -39,7 +39,6 @@ See: [https://leandroparice-boracodar16.netlify.app/](https://leandroparice-bora
 - Filter contacts ✔️
 - Bug changing letter colors on contact click
 - Bug updating contacts with filter active
-- Contact image upload
 
 ### About #boraCodar
 
