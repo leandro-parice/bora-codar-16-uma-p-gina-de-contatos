@@ -2,6 +2,13 @@
 
 ##### Challenge #16
 
+### About this project
+
+Project for ReactJS study purposes, where I take advantage of Rocketseat's #boraCodar 16 front-end challenge to create a contact listing web app.
+In this project, I developed the functionality to add, edit, remove, and filter contacts.
+All of these features operate on a local json object and for simplicity, I've used the browser's local storage to persist contact information.
+I used the [https://pravatar.cc/](https://pravatar.cc/) api to simulate the avatar of each contact.
+
 ### Online version
 
 See: [https://leandroparice-boracodar16.netlify.app/](https://leandroparice-boracodar16.netlify.app)
@@ -34,7 +41,7 @@ See: [https://leandroparice-boracodar16.netlify.app/](https://leandroparice-bora
 - Bug updating contacts with filter active
 - Contact image upload
 
-### About #coraCodar
+### About #boraCodar
 
 #boraCodar is a [Rocketseat](https://rocketseat.com.br) project in which, weekly, a layout is presented so that your front-end code can be made, for more information, see: [rocketseat.com.br/boracodar](https://rocketseat.com.br/boracodar)
 
