@@ -29,8 +29,9 @@ See: [https://leandroparice-boracodar16.netlify.app/](https://leandroparice-bora
 - Validation of the contact inclusion form ✔️
 - Responsive (include desktop version) ✔️
 - Confirmation message before removing contact ✔️
-- Filter contacts
+- Filter contacts ✔️
 - Bug changing letter colors on contact click
+- Bug updating contacts with filter active
 - Contact image upload
 
 ### About #coraCodar
