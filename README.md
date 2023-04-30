@@ -26,9 +26,9 @@ See: [https://leandroparice-boracodar16.netlify.app/](https://leandroparice-bora
 - Editing contacts ✔️
 - Delete contacts ✔️
 - Save data in Local Storage ✔️
-- Responsive (Desktop version)
+- Validation of the contact inclusion form ✔️
+- Responsive (include desktop version) ✔️
 - Confirmation message before removing contact
-- Validation of the contact inclusion form
 - Bug changing letter colors on contact click
 - Contact image upload
 

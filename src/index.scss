@@ -17,9 +17,24 @@ body {
   min-height: 100vh;
   margin: 0 auto;
 
+  @media only screen and (min-width: 768px) {
+    max-width: none;
+  }
+
   .header {
     padding: 40px;
     background-color: #16151e;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    max-width: 430px;
+    z-index: 2000;
+
+    @media only screen and (min-width: 768px) {
+      max-width: none;
+    }
 
     .header-top {
       display: flex;
@@ -95,7 +110,8 @@ body {
 
   .list-contacts {
     width: 100%;
-    padding: 40px 20px;
+    padding: 220px 20px 40px 20px;
+    z-index: 1000;
 
     & > p {
       color: white;
@@ -126,6 +142,15 @@ body {
 
       .contacts {
         flex-grow: 1;
+        max-width: calc(100% - 100px);
+
+        @media only screen and (min-width: 768px) {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 15px;
+        }
 
         .contact {
           display: flex;
@@ -139,6 +164,18 @@ body {
           transition: background ease-in 0.3s;
           will-change: background;
           cursor: pointer;
+
+          @media only screen and (min-width: 768px) {
+            width: calc(50% - 15px);
+          }
+
+          @media only screen and (min-width: 1024px) {
+            width: calc(33.33% - 15px);
+          }
+
+          @media only screen and (min-width: 1200px) {
+            width: calc(25% - 15px);
+          }
 
           &.active {
             background-color: lighten(#1a1924, 10%);
