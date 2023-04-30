@@ -9,6 +9,10 @@ const FormContact = ({ visible, onCloseClick, selectedContact, onSendForm }) => 
   const nameRef = useRef(null);
 
   useEffect(() => {
+    setName("");
+    setPhone("");
+    setTitle("Adicionar contato");
+
     if (selectedContact) {
       setName(selectedContact.name);
       setPhone(selectedContact.phone);
