@@ -6,37 +6,7 @@ import ListContact from "./components/ListContact";
 import FormContact from "./components/FormContact";
 
 const App = () => {
-  const [contacts, setContacts] = useState({
-    A: [
-      { id: 1, name: "Alberto Rodrigues", phone: "(12) 93454-1343" },
-      { id: 2, name: "Alice Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 3, name: "Arnaldo Pereira", phone: "(11) 95423-2335" },
-      { id: 4, name: "Beatriz Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 5, name: "Enzo Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 6, name: "Alice Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 7, name: "Eduarda Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 8, name: "Fernanda Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 9, name: "Arthur Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 10, name: "Davi Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 11, name: "Isabella Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 12, name: "Guilherme Sobrenome", phone: "(XX) XXXXX-XXXX" },
-    ],
-    L: [
-      { id: 13, name: "Leandro Parice", phone: "(14) 97979-7979" },
-      { id: 14, name: "Lilian Pricigo", phone: "(14) 97979-2343" },
-      { id: 15, name: "Lucas da Silva", phone: "(14) 92432-7979" },
-      { id: 16, name: "Miguel Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 17, name: "Guilherme Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 18, name: "Giovanna Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 19, name: "Miguel Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 20, name: "Beatriz Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 21, name: "Laura Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 22, name: "Beatriz Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 23, name: "Gabriel Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 24, name: "Gabriel Sobrenome", phone: "(XX) XXXXX-XXXX" },
-      { id: 25, name: "Beatriz Sobrenome", phone: "(XX) XXXXX-XXXX" },
-    ],
-  });
+  const [contacts, setContacts] = useState({});
   // const [filteredContacts, setFilteredContacts] = useState([]);
   const [formContact, setFormContact] = useState(false);
   const [selectedContact, setSelectedContact] = useState(null);
