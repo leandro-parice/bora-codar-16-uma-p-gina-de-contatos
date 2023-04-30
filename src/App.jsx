@@ -17,12 +17,9 @@ const App = () => {
     const savedContacts = JSON.parse(localStorage.getItem("contacts"));
     if (savedContacts) {
       setContacts(savedContacts);
+      setFilteredContacts(savedContacts);
     }
   }, []);
-
-  useEffect(() => {
-    console.log(filteredContacts);
-  }, [filteredContacts]);
 
   useEffect(() => {
     localStorage.setItem("contacts", JSON.stringify(contacts));
