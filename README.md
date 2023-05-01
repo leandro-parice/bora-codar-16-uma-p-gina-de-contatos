@@ -37,7 +37,6 @@ See: [https://leandroparice-boracodar16.netlify.app/](https://leandroparice-bora
 - Responsive (include desktop version) ✔️
 - Confirmation message before removing contact ✔️
 - Filter contacts ✔️
-- Bug changing letter colors on contact click
 - Bug updating contacts with filter active
 
 ### About #boraCodar
