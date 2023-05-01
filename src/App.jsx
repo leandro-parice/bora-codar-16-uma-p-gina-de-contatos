@@ -12,20 +12,40 @@ const App = () => {
   const [selectedContact, setSelectedContact] = useState(null);
   const [formContact, setFormContact] = useState(false);
   const [messageRemove, setMessageRemove] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const savedContacts = JSON.parse(localStorage.getItem("contacts"));
     if (savedContacts) {
       setContacts(savedContacts);
-      setFilteredContacts(savedContacts);
     }
   }, []);
 
   useEffect(() => {
     localStorage.setItem("contacts", JSON.stringify(contacts));
-  }, [contacts]);
+
+    if (search === "") {
+      setFilteredContacts(contacts);
+    } else {
+      let filtred = {};
+
+      for (let key in contacts) {
+        if (contacts.hasOwnProperty(key)) {
+          const group = contacts[key].filter((contact) => contact.name.toLowerCase().includes(search.toLowerCase()));
+
+          if (group.length > 0) {
+            filtred[key] = group;
+          }
+        }
+      }
+
+      setFilteredContacts(filtred);
+    }
+  }, [contacts, search]);
 
   const handleFilterContacts = (query) => {
+    setSearch(query);
+
     if (query === "") {
       setFilteredContacts(contacts);
     } else {
@@ -96,7 +116,6 @@ const App = () => {
       setMessageRemove(false);
       setSelectedContact(null);
       setContacts(newContacts);
-      setFilteredContacts(newContacts);
     }
   };
 
@@ -128,7 +147,6 @@ const App = () => {
     }
 
     setContacts(newContactsSort);
-    setFilteredContacts(newContactsSort);
     setFormContact(false);
   };
 

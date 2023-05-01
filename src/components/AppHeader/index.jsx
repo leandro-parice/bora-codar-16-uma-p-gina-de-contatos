@@ -1,13 +1,9 @@
 /* eslint-disable react/prop-types */
 import { Pencil, Plus, Search, Trash } from "lucide-react";
-import { useState } from "react";
 
 const AppHeader = ({ selectedContact, onAddClick, onEditClick, onRemoveClick, onFilterContacts }) => {
-  const [query, setQuery] = useState("");
-
   const handleChange = (event) => {
     const newQuery = event.target.value;
-    setQuery(newQuery);
     onFilterContacts(newQuery);
   };
 
@@ -31,7 +27,7 @@ const AppHeader = ({ selectedContact, onAddClick, onEditClick, onRemoveClick, on
       </div>
       <div className="header-botton">
         <Search size={20} />
-        <input type="text" placeholder="Busque por nome ou por dados de contato..." value={query} onChange={handleChange} />
+        <input type="text" placeholder="Busque por nome ou por dados de contato..." onChange={handleChange} />
       </div>
     </header>
   );
