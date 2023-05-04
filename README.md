@@ -25,7 +25,7 @@ See: [https://leandroparice-boracodar16.netlify.app/](https://leandroparice-bora
 - Sass
 - JSX
 - GitHub
-- Netlify
+- Netlify [![Netlify Status](https://api.netlify.com/api/v1/badges/e5794f0d-42c7-416a-9fac-b61af3157e98/deploy-status)](https://app.netlify.com/sites/leandroparice-boracodar16/deploys)
 
 ### Improvements
 
